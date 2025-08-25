@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>  // for sleep()
 
 #define PORT 10000
 
@@ -96,7 +97,11 @@ int main() {
     }
 
     printf("Server running on http://localhost:%d\n", PORT);
-    getchar();  // Keep running until Enter is pressed
+
+    // Keep server alive
+    while (1) {
+        sleep(1);
+    }
 
     MHD_stop_daemon(daemon);
     return 0;
